@@ -3,7 +3,7 @@ class QuotesController < ApplicationController
 	before_action -> { sleep 3 }
 
 	def index
-		@quotes = Quote.all
+		@quotes = Quote.ordered
 	end	
 
 	def show
@@ -17,7 +17,10 @@ class QuotesController < ApplicationController
 		@quote = Quote.new(quote_params)
 
 		if @quote.save
-			redirect_to quotes_path, notice: "Quote was successfuly created."
+			respond_to do |format|
+				format.html { redirect_to quotes_path, notice: "Quote was successfuly created." }
+				format.turbo_stream
+			end	
 		else
       render :new, status: :unprocessable_entity	 
 		end	
