@@ -9,11 +9,11 @@ class QuotesTest < ApplicationSystemTestCase
     visit quotes_path
     assert_selector "h1", text: "Quotes"
 
-    click_on "New Quote"
-    assert_selector "h1", test: "New Quote"
+    click_on "New quote"
+    assert_selector "h1", text: "New quote"
 
     fill_in "Name", with: "Capybara quote"
-    click_on "Create Quote"
+    click_on "Create quote"
 
     assert_selector "h1", text: "Quotes"
     assert_text "Capybara quote"
